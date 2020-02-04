@@ -5,6 +5,8 @@ import Footer from '../components/footer';
 import Header from '../components/header';
 import Layout from '../components/layout'
 
+// GETTING GRAPHQL PLAYGROUND TO WORK. CHECK OUT PACKAGE.JSON UNDER DEVELOPMENT, THEN USE NPM RUN DEVELOP
+
 const IndexPage = () => {
   return (
     <Layout>
