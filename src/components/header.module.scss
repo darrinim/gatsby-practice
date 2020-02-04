@@ -1,0 +1,26 @@
+.nav-item {
+  color: #999999;
+  font-size: .9rem;
+  margin-right: 1.3rem;
+  text-decoration: none;
+}
+.header {
+  padding: 1rem 0 3rem;
+}
+.title {
+  color: black;
+  font-size: 3rem;
+  text-decoration: none;
+}
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+}
+.nav-item:hover {
+  color: #666666;
+}
+// below is to set the active classname. So when this is now selected, it uses this as the default color!
+.active-nav-item {
+  color: #333333;
+}
