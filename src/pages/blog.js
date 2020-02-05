@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Layout from '../components/layout';
-import { graphql, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 
 const BlogPage = () => {
@@ -14,18 +14,18 @@ const BlogPage = () => {
               title
               date
             }
-            html
-            excerpt
+            fields {
+              slug
+            }
           }
         }
       }
     }
   `)
 
-  console.log(data);
-  
 
   const postData = data.allMarkdownRemark.edges
+  console.log('this right here bud', postData);
 
   return (
     <Layout>
@@ -34,8 +34,10 @@ const BlogPage = () => {
           {postData.map( (post) => {
             return (
               <li>
+                <Link to={`blog/${post.node.fields.slug}`}>
                 <h2>{post.node.frontmatter.title}</h2>
                 <p>{post.node.frontmatter.date}</p>
+                </Link>
               </li>
             )
           })}
