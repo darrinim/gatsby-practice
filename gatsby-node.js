@@ -3,21 +3,22 @@
 // A node is just a data structure for storing data (look at node in our graphql query)
 const path = require('path');
 
-module.exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions
+// BELOW WE NO LONGER NEED SINCE WE SET UP ON CONTENTFUL, WE JUST USED THIS TO GENERATE SLUGS FOR OUR POSTS.
+// module.exports.onCreateNode = ({ node, actions }) => {
+//   const { createNodeField } = actions
 
-  if (node.internal.type === 'MarkdownRemark') {
+//   if (node.internal.type === 'MarkdownRemark') {
 
-    const slug = path.basename(node.fileAbsolutePath, '.md')
+//     const slug = path.basename(node.fileAbsolutePath, '.md')
 
-    createNodeField({
-      node,
-      name: 'slug',
-      value: slug
-    })
+//     createNodeField({
+//       node,
+//       name: 'slug',
+//       value: slug
+//     })
 
-  }
-}
+//   }
+// }
 
 // below the graphql is a function, not what we normally used, it's a function that we pass a string graphql query to, it returns a promise
 
@@ -26,24 +27,22 @@ module.exports.createPages = async ({ graphql, actions }) => {
   const blogTemplate = path.resolve('./src/templates/blog.js')
   const res = await graphql(`
     query {
-      allMarkdownRemark {
+      allContentfulBlogPost {
         edges {
           node {
-            fields {
-              slug
-            }
+            slug
           }
         }
       }
     }
   `)
 
-  res.data.allMarkdownRemark.edges.forEach((edge) => {
+  res.data.allContentfulBlogPost.edges.forEach((edge) => {
     createPage({
       component: blogTemplate,
-      path: `/blog/${edge.node.fields.slug}`,
+      path: `/blog/${edge.node.slug}`,
       context: {
-        slug: edge.node.fields.slug
+        slug: edge.node.slug
       }
     })
   })
