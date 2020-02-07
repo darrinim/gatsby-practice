@@ -11,7 +11,7 @@ const IndexPage = () => {
     <Layout>
       <Head title="Home" />
       <h1>Hello.</h1>
-      <h2>I'm Darrin, I am trying out Gatsby. Wish me luck!</h2>
+      <h2>I'm Darrin, this was me trying a static site generator and integrating it with a CMS. The static site generator I used was Gatsby, and the CMS I use was Contentful. I highly suggest both!</h2>
     </Layout>
   )
 };
